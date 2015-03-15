@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-
 <html>
 <head>
+    <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
-<div class="page-header">
-    <h1>hello world</h1>
-</div>
-<div>
-    <p>hello jsp</p>
-</div>
+hello ${hello}
 </body>
 </html>
