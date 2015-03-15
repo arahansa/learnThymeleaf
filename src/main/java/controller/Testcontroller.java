@@ -22,4 +22,9 @@ public class Testcontroller {
         model.addAttribute("message", "hello thymeleaf");
         return "index";
     }
+
+    @RequestMapping("/jsp")
+    String jsp(){
+        return "index";
+    }
 }

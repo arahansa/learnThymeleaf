@@ -14,9 +14,14 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.2.1.RELEASE")
     runtime('org.hsqldb:hsqldb:2.3.2')
     compile("org.springframework.boot:spring-boot-starter-data-jpa:1.2.1.RELEASE")
+    //thymeleaf
+    //compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.2.1.RELEASE")
+    //jsp config
+    providedCompile "org.apache.tomcat.embed:tomcat-embed-core:8.0.20"
+    compile("javax.servlet:jstl")
+
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
