@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+ext {
+    javaVersion='1.8'
+}
+
+buildDir = 'build'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.2.1.RELEASE")
+    runtime('org.hsqldb:hsqldb:2.3.2')
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:1.2.1.RELEASE")
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+task initSrc << {
+    project.sourceSets*.allSource.srcDirTrees.flatten().dir.each { dir ->
+        dir.mkdirs()
+    }
+}
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+// 소스 인코딩 지정방법 1
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+
+/* Eclipse 관련 설정들 */
+tasks.eclipse.dependsOn cleanEclipse
+tasks.eclipse.dependsOn initSrc
+
+tasks.idea.dependsOn initSrc
+
+eclipse {
+    classpath {
+        downloadSources = true
+        defaultOutputDir = file("${buildDir}/classes/main")
+    }
+}
