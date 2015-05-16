@@ -18,7 +18,8 @@ apply plugin: 'spring-boot'
 ext {
     javaVersion='1.8'
 }
-
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
 buildDir = 'build'
 
 repositories {
@@ -26,15 +27,18 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE")
-    runtime('org.hsqldb:hsqldb:2.3.2')
-    compile("org.springframework.boot:spring-boot-starter-data-jpa:1.2.1.RELEASE")
     //thymeleaf
-    //compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.2.1.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.2.1.RELEASE")
     //jsp config
-    runtime('org.apache.tomcat.embed:tomcat-embed-jasper')
-    runtime('org.glassfish.web:javax.servlet.jsp.jstl:1.2.3')
-    compile("javax.servlet:jstl")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-tomcat")
+   // compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+    //compile("javax.servlet:jstl")
+
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("com.h2database:h2")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
@@ -45,8 +49,7 @@ task initSrc << {
     }
 }
 
-sourceCompatibility = javaVersion
-targetCompatibility = javaVersion
+
 
 // 소스 인코딩 지정방법 1
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

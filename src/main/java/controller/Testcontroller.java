@@ -24,7 +24,8 @@ public class Testcontroller {
     }
 
     @RequestMapping("/jsp")
-    String jsp(){
+    String jsp(Model model){
+    	model.addAttribute("message", "hello jsp");
         return "index";
     }
 }
